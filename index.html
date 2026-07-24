@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultra Slot Studio – Virtual Slot Simulator</title>
+  <meta name="description" content="Ultra Slot Studio is a premium virtual slot machine simulator using only demo credits. No real money, no gambling.">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="global-bg"></div>
+
+  <div class="site-shell">
+    <!-- Top navigation -->
+    <header class="site-header">
+      <div class="logo-block">
+        <div class="logo-icon">🎰</div>
+        <div class="logo-text">
+          <h1>Ultra Slot Studio</h1>
+          <p>Virtual Slot Machine Experience – Demo Credits Only</p>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#play" class="nav-link active">Play</a>
+        <a href="#info" class="nav-link">How It Works</a>
+        <a href="#disclaimer" class="nav-link">Disclaimer</a>
+      </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="site-main">
+      <section id="play" class="play-section">
+        <div class="play-grid">
+          <!-- Game panel -->
+          <div class="game-card">
+            <div class="game-header">
+              <div>
+                <h2>Premium Slot Simulator</h2>
+                <p>Spin the reels with virtual credits. No deposits, no withdrawals, no real money.</p>
+              </div>
+              <div class="game-status-pill" id="gameStatusPill">
+                <span id="gameStatusText">Idle</span>
+              </div>
+            </div>
+
+            <!-- Stats row -->
+            <div class="top-stats-row">
+              <div class="stat-chip">
+                <span class="stat-label">Credits</span>
+                <span class="stat-value" id="credits">1000</span>
+              </div>
+              <div class="stat-chip">
+                <span class="stat-label">Bet / Spin</span>
+                <span class="stat-value" id="betDisplay">10</span>
+              </div>
+              <div class="stat-chip">
+                <span class="stat-label">Total Spins</span>
+                <span class="stat-value" id="totalSpins">0</span>
+              </div>
+              <div class="stat-chip">
+                <span class="stat-label">Jackpots</span>
+                <span class="stat-value" id="jackpots">0</span>
+              </div>
+            </div>
+
+            <!-- Slot machine -->
+            <div class="slot-shell">
+              <div class="slot-frame">
+                <div class="slot-top-bar">
+                  <span class="slot-label">Ultra Reels</span>
+                  <span class="slot-mode">Demo Mode</span>
+                </div>
+
+                <div class="slot-reels">
+                  <div class="reel" id="reel1">
+                    <div class="reel-inner">🍒</div>
+                  </div>
+                  <div class="reel" id="reel2">
+                    <div class="reel-inner">🍋</div>
+                  </div>
+                  <div class="reel" id="reel3">
+                    <div class="reel-inner">🍉</div>
+                  </div>
+                </div>
+
+                <div class="slot-bottom-bar">
+                  <span class="slot-hint">Virtual credits only. For entertainment and simulation purposes.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-row">
+              <div class="bet-block">
+                <span class="control-label">Choose your bet</span>
+                <div class="chip-row">
+                  <button class="chip-btn" data-bet="5">5</button>
+                  <button class="chip-btn active" data-bet="10">10</button>
+                  <button class="chip-btn" data-bet="25">25</button>
+                  <button class="chip-btn" data-bet="50">50</button>
+                  <button class="chip-btn" data-bet="100">100</button>
+                </div>
+              </div>
+
+              <div class="spin-block">
+                <button id="spinBtn" class="primary-btn">SPIN</button>
+                <button id="autoSpinBtn" class="secondary-btn">AUTO SPIN</button>
+                <button id="stopAutoBtn" class="ghost-btn" disabled>STOP</button>
+              </div>
+            </div>
+
+            <!-- Result banner -->
+            <div class="result-banner" id="resultBanner">
+              <span id="resultText">Select a bet and press SPIN to start.</span>
+            </div>
+          </div>
+
+          <!-- Side panel -->
+          <aside class="side-card">
+            <div class="side-section">
+              <h3>Payout Table</h3>
+              <ul class="payout-list">
+                <li><span>💎 💎 💎</span><span>x 20 × bet</span></li>
+                <li><span>⭐ ⭐ ⭐</span><span>x 10 × bet</span></li>
+                <li><span>🍇 🍇 🍇</span><span>x 6 × bet</span></li>
+                <li><span>🍉 🍉 🍉</span><span>x 4 × bet</span></li>
+                <li><span>🍋 🍋 🍋</span><span>x 3 × bet</span></li>
+                <li><span>🍒 🍒 🍒</span><span>x 2 × bet</span></li>
+                <li><span>Any pair</span><span>x 1 × bet</span></li>
+              </ul>
+            </div>
+
+            <div class="side-section">
+              <h3>Session Stats</h3>
+              <div class="session-stats">
+                <div class="session-row">
+                  <span>Total Wins</span>
+                  <span id="totalWins">0</span>
+                </div>
+                <div class="session-row">
+                  <span>Total Losses</span>
+                  <span id="totalLosses">0</span>
+                </div>
+                <div class="session-row">
+                  <span>Win Rate</span>
+                  <span id="winRate">0%</span>
+                </div>
+                <div class="session-row">
+                  <span>Best Win</span>
+                  <span id="bestWin">0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="side-section">
+              <h3>Recent Spins</h3>
+              <ul class="history-list" id="historyList">
+                <!-- JS will inject history items -->
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Info section -->
+      <section id="info" class="info-section">
+        <div class="info-card">
+          <h2>How Ultra Slot Studio Works</h2>
+          <p>
+            Ultra Slot Studio is designed to look and feel like a modern online slot interface,
+            but it uses <strong>demo credits only</strong>. There is no way to deposit, withdraw,
+            or stake real money.
+          </p>
+          <div class="info-grid">
+            <div class="info-item">
+              <h3>Virtual Credits</h3>
+              <p>
+                You start with a fixed balance of demo credits. Each spin deducts your chosen bet,
+                and wins add credits back according to the payout table.
+              </p>
+            </div>
+            <div class="info-item">
+              <h3>Randomized Outcomes</h3>
+              <p>
+                Each reel result is generated using simple pseudo‑random logic in JavaScript.
+                This is for entertainment and simulation only, not for real gambling.
+              </p>
+            </div>
+            <div class="info-item">
+              <h3>Auto Spin Mode</h3>
+              <p>
+                Enable auto spin to let the simulator play multiple spins in sequence. Auto spin
+                stops automatically if you run out of credits.
+              </p>
+            </div>
+            <div class="info-item">
+              <h3>Session Statistics</h3>
+              <p>
+                Track total spins, wins, losses, win rate, and best win for your current session.
+                Refresh the page to reset the session.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Disclaimer section -->
+      <section id="disclaimer" class="disclaimer-section">
+        <div class="disclaimer-card">
+          <h2>Important Disclaimer</h2>
+          <p>
+            Ultra Slot Studio is a <strong>virtual slot machine simulator</strong> built for
+            entertainment, UI design, and demonstration purposes only.
+          </p>
+          <ul class="disclaimer-list">
+            <li>No real money is used, accepted, or paid out.</li>
+            <li>No deposits, withdrawals, or financial transactions are possible.</li>
+            <li>Outcomes are random and have no predictive or financial value.</li>
+            <li>This interface must not be used for real gambling or betting.</li>
+          </ul>
+          <p>
+            By using this simulator, you acknowledge that it is purely a demo experience and
+            not a gambling product.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>© <span id="yearSpan"></span> Ultra Slot Studio – Virtual Slot Simulator. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Sound effects -->
+  <audio id="spinSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+  <audio id="winSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+  <audio id="loseSound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
